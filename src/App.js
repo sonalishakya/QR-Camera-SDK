@@ -43,6 +43,7 @@ function App() {
 
     if (code) {
 
+      
       // check underlying OS
       // if android
       // use android manifest
@@ -59,6 +60,8 @@ function App() {
 
       
       setHasQR(true);
+
+
       if (code.data.includes('product')) {
         navigate(`/products/${code.data.split('product/')[1]}`);
       } else if (code.data.includes('profile')) {
