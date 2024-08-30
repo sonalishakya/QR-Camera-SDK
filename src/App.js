@@ -49,6 +49,7 @@ function App() {
       const code = jsQR(imageData.data, imageData.width, imageData.height);
 
       if (code) {
+        alert("code -- ",code);
         drawBoundingBox(context, code.location);
         console.log("QR Code detected:", code.data);
         setHasQR(true);
