@@ -50,7 +50,6 @@ function App() {
             console.log(" -- video vw-- 1111", videoWidth, " video vh-- ", videoHeight);
             console.log(" -- canva vw-- 1111", canvas.width, " canva vh-- ", canvas.height);
     
-            // Ensure videoWidth and height are not zero
             if (videoWidth > 0 && videoHeight > 0) {
               console.log(" -- video vw-- ", videoWidth, " video vh-- ", videoHeight);
               context.drawImage(video, 0, 0, videoWidth, videoHeight);
@@ -58,19 +57,18 @@ function App() {
               const imageData = context.getImageData(0, 0, videoWidth, videoHeight);
               const code = jsQR(imageData.data, videoWidth, videoHeight);
     
+              console
               if (code) {
                 setHasQR(true);
     
                 if (code.data.includes("beckn://")) {
-                  // Your logic for beckn:// protocol
-                }
-    
-                if (code.data.includes('product')) {
-                  navigate(`/products/${code.data.split('product/')[1]}`);
-                } else if (code.data.includes('profile')) {
-                  navigate(`/users/${code.data.split('profile/')[1]}`);
-                } else {
-                  console.log('Unrecognized QR Code format');
+                  console.log("Beckn link detected");
+                  if (code.data.includes("ondc")) {
+                    navigate("beckn://ondc?context.action=search&context.bpp_id=webapi.magicpin.in/oms_partner/ondc&message.intent.provider.id=191498&context.domain=ONDC:RET11&message.intent.provider.locations.0.id=191498");
+                  } else {
+                    console.log('Unrecognized QR Code format');
+                    navigate("https://ondc.org/");
+                  }
                 }
               } else {
                 console.log("No QR code detected");
