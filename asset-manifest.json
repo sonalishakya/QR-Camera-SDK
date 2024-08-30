@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/qr-camera-sdk/static/css/main.fefaf8cc.css",
-    "main.js": "/qr-camera-sdk/static/js/main.de8e28ae.js",
+    "main.js": "/qr-camera-sdk/static/js/main.5ee4d643.js",
     "index.html": "/qr-camera-sdk/index.html",
     "main.fefaf8cc.css.map": "/qr-camera-sdk/static/css/main.fefaf8cc.css.map",
-    "main.de8e28ae.js.map": "/qr-camera-sdk/static/js/main.de8e28ae.js.map"
+    "main.5ee4d643.js.map": "/qr-camera-sdk/static/js/main.5ee4d643.js.map"
   },
   "entrypoints": [
     "static/css/main.fefaf8cc.css",
-    "static/js/main.de8e28ae.js"
+    "static/js/main.5ee4d643.js"
   ]
 }
