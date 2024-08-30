@@ -86,6 +86,28 @@ function App() {
       });
     
   };
+    
+  useEffect(() => {
+    getCurrCamera();
+  }, []);
+
+  return (
+    <div className="App" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
+      <div className='camera' style={{ width: '100%' , height: '100%' }}>
+        <video ref={currRef} style={{ width: 1366, height: 768 }}></video>
+        <canvas ref={qrScan} style={{ width: 38, height: 38, display: 'none' }}></canvas>
+        <p>Scan a QR Code</p>
+      </div>
+      {hasQR && (
+        <div className="result hasQR">
+          <button onClick={() => setHasQR(false)}>CLOSE</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
   
 
   // const getCurrCamera = () => {
@@ -224,10 +246,6 @@ function App() {
   //   }
   // }, [navigate]);
 
-  useEffect(() => {
-    getCurrCamera();
-  }, []);
-
   // useEffect(() => {
   //   if (currRef.current) {
   //     currRef.current.addEventListener('play', () => {
@@ -236,24 +254,5 @@ function App() {
   //   }
   // }, [scanQRCode]);
 
-  return (
-    <div className="App" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      <div className='camera' style={{ width: '100%' , height: '100%' }}>
-        <video ref={currRef} style={{ width: 1366, height: 768 }}></video>
-        <canvas ref={qrScan} style={{ width: 38, height: 38, display: 'none' }}></canvas>
-        <p>Scan a QR Code</p>
-      </div>
-      {hasQR && (
-        <div className="result hasQR">
-          <button onClick={() => setHasQR(false)}>CLOSE</button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default App;
 
 
-
-// write a code for android specific qr code scannner 
