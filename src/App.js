@@ -49,15 +49,17 @@ function App() {
       const code = jsQR(imageData.data, imageData.width, imageData.height);
 
       if (code) {
-        alert("code -- ",code);
         drawBoundingBox(context, code.location);
         console.log("QR Code detected:", code.data);
         setHasQR(true);
 
         if (code.data.includes("beckn://")) {
+          console.log("Supports beckn");
           if (code.data.includes("ondc")) {
-            navigate("beckn://ondc?context.action=search&context.bpp_id=webapi.magicpin.in/oms_partner/ondc&message.intent.provider.id=191498&context.domain=ONDC:RET11&message.intent.provider.locations.0.id=191498");
+            console.log("Supports ondc host");
+            navigate(code.data);
           } else {
+            console.log("Does not support ondc host");
             navigate("https://ondc.org/");
           }
         }
