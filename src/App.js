@@ -27,7 +27,7 @@ function App() {
 
           video.play().then(() => {
             console.log("Video is playing");
-            scanQRCode(); // Start scanning after the video starts playing
+            scanQRCode(); 
           }).catch((error) => {
             console.error("Error while trying to play video", error);
           });
@@ -50,16 +50,18 @@ function App() {
 
       if (code) {
         drawBoundingBox(context, code.location);
-        console.log("QR Location detected:", code.location);
         console.log("QR Code detected:", code.data);
         setHasQR(true);
+
+        // Future approach -- Check the android manifest of the app in realtime to 
+        // check for beckn and domain host support to redirect to current app's store page
 
         if (code.data.includes("beckn://")) {
             console.log("Supports beckn");
             window.location.href = code.data;
           } else {
-            console.log("Does not support ondc host");
-            window.location.href = "https://play.google.com/store/apps/details?id=net.one97.paytm";
+            console.log("Does not support beckn");
+            navigate("https://ondc.org/");
           }
       } else {
         console.log("No QR code detected");
@@ -70,6 +72,8 @@ function App() {
 
   const drawBoundingBox = (context, location) => {
     if (!location) return;
+
+    console.log("context -- ", context, "location -- ", location);
 
     context.beginPath();
     context.moveTo(location.topLeftCorner.x, location.topLeftCorner.y);
