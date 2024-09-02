@@ -55,7 +55,8 @@ function App() {
 
         if (code.data.includes("beckn://")) {
             console.log("Supports beckn");
-            navigate(code.data);
+            window.location.href = code.data;
+            console.log("redirection successful");
           } else {
             console.log("Does not support ondc host");
             navigate("https://ondc.org/");
