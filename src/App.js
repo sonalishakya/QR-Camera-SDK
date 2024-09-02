@@ -49,20 +49,17 @@ function App() {
       const code = jsQR(imageData.data, imageData.width, imageData.height);
 
       if (code) {
-        drawBoundingBox(context, code.location);
+        // drawBoundingBox(context, code.location);
         console.log("QR Code detected:", code.data);
         setHasQR(true);
 
         if (code.data.includes("beckn://")) {
-          console.log("Supports beckn");
-          if (code.data.includes("ondc")) {
-            console.log("Supports ondc host");
+            console.log("Supports beckn");
             navigate(code.data);
           } else {
             console.log("Does not support ondc host");
             navigate("https://ondc.org/");
           }
-        }
       } else {
         console.log("No QR code detected");
       }
