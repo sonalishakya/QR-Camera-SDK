@@ -9,6 +9,8 @@ function App() {
   const [hasQR, setHasQR] = useState(false);
   const navigate = useNavigate();
 
+  let shouldStop = false;
+
   const getCurrCamera = () => {
     window.navigator.mediaDevices
       .getUserMedia({ video: { facingMode: 'environment' } })
@@ -62,15 +64,18 @@ function App() {
             window.location.href = code.data;
             let fallback = true;
             setTimeout(() => {
-              fallback = window.confirm("You don't have any compatible app. Do you want to redirect to playstore?");
-              if(fallback) {
-                window.location.href = 'https://play.google.com/store/apps/details?id=com.magicpin.local';
-              } 
+              if (!shouldStop) {
+                fallback = window.confirm("You don't have any compatible app. Do you want to redirect to playstore?");
+                if(fallback) {
+                  window.location.href = 'https://play.google.com/store/apps/details?id=com.magicpin.local';
+                } 
+                shouldStop = true;
+                if (shouldStop) {
+                  console.log("Stopping");
+                  window.close();
+                }
+              }
             }, 5000);
-            if(!fallback) {
-              console.log("Closing session");
-              window.close();
-            }
           }
         }
       } else {
