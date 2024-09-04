@@ -60,16 +60,17 @@ function App() {
           if (code.data.includes("beckn://")) {
             console.log("Supports beckn");
             window.location.href = code.data;
-
+            let fallback = true;
             setTimeout(() => {
-              let fallback = window.confirm("You don't have any compatible app. Do you want to redirect to playstore?");
+              fallback = window.confirm("You don't have any compatible app. Do you want to redirect to playstore?");
               if(fallback) {
                 window.location.href = 'https://play.google.com/store/apps/details?id=com.magicpin.local';
-              } else {
-                console.log("Closing session");
-                window.close();
-              }
+              } 
             }, 5000);
+            if(!fallback) {
+              console.log("Closing session");
+              window.close();
+            }
           }
         }
       } else {
