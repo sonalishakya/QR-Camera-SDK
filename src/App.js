@@ -55,21 +55,25 @@ function App() {
         console.log("QR Code detected:", code.data);
         setHasQR(true);
 
-        // Future approach -- Check the android manifest of the app in realtime to 
-        // check for beckn and domain host support to redirect to current app's store page
-
+  
         if(code?.data) {
+          if (navigator.vibrate) {
+            navigator.vibrate(200);
+          }
           if (code.data.includes("beckn://")) {
             console.log("Supports beckn");
             window.location.href = code.data;
+            // add flag for prompt
             let fallback = true;
             setTimeout(() => {
               if (!shouldStop) {
                 fallback = window.confirm("You don't have any compatible app. Do you want to redirect to playstore?");
                 if(fallback) {
                   window.location.href = 'https://play.google.com/store/apps/details?id=com.magicpin.local';
-                } 
-                shouldStop = true;
+                } else { 
+                  shouldStop = true; 
+                }
+
                 if (shouldStop) {
                   console.log("Stopping");
                   window.close();
