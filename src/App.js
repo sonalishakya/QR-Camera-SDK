@@ -72,7 +72,7 @@ function App() {
                 shouldStop = true;
                 if (shouldStop) {
                   console.log("Stopping");
-                  window.history.back();
+                  window.close();
                 }
               }
             }, 5000);
