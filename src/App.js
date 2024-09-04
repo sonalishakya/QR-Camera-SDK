@@ -57,8 +57,7 @@ function App() {
 
   
         if(code?.data) {
-          navigator.vibrate(200);
-
+          navigator.vibrate([200, 100, 200]);
           if (code.data.includes("beckn://")) {
             console.log("Supports beckn");
             window.location.href = code.data;
@@ -91,7 +90,11 @@ function App() {
   const drawBoundingBox = (context, location) => {
     if (!location) return;
 
-    console.log("context -- ", context, "location -- ", location);
+    // console.log("location.topLeftCorner -", location.topLeftCorner,
+    //   "location.topRightCorner -", location.topRightCorner,
+    //   "location.bottomRightCorner -", location.bottomRightCorner,
+    //   "location.bottomLeftCorner -", location.bottomLeftCorner
+    // );
 
     context.beginPath();
     context.moveTo(location.topLeftCorner.x, location.topLeftCorner.y);
@@ -99,8 +102,8 @@ function App() {
     context.lineTo(location.bottomRightCorner.x, location.bottomRightCorner.y);
     context.lineTo(location.bottomLeftCorner.x, location.bottomLeftCorner.y);
     context.closePath();
-    context.lineWidth = 4;
-    context.strokeStyle = 'red';
+    context.lineWidth = 6;
+    context.strokeStyle = 'lime';
     context.stroke();
   };
 
@@ -112,7 +115,7 @@ function App() {
     <div className="App" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <div className='camera' style={{ width: '100%', height: '100%' }}>
         <video ref={currRef} style={{ width: '100%', height: '100%' }}></video>
-        <canvas ref={qrScan} style={{ display: 'none' }}></canvas>
+        <canvas ref={qrScan} style={{ display: 'block' }}></canvas>
         <p>Scan a QR Code</p>
       </div>
       {hasQR && (
