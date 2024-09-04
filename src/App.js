@@ -57,9 +57,8 @@ function App() {
 
   
         if(code?.data) {
-          if (navigator.vibrate) {
-            navigator.vibrate(200);
-          }
+          navigator.vibrate(200);
+
           if (code.data.includes("beckn://")) {
             console.log("Supports beckn");
             window.location.href = code.data;
