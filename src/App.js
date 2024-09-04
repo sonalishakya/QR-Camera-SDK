@@ -62,7 +62,7 @@ function App() {
             window.location.href = code.data;
 
             setTimeout(() => {
-              let fallback = confirm("You don't have any compatible app. Do you want to redirect to playstore?");
+              let fallback = window.confirm("You don't have any compatible app. Do you want to redirect to playstore?");
               if(fallback) {
                 window.location.href = 'https://play.google.com/store/apps/details?id=com.magicpin.local';
               }
